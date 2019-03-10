@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>测试import()</title>
+</head>
+<body>
+    <button>测试import()</button>
+    <script type="text/javascript">
+        let button = document.querySelector('button')
+        // import('./index.js')
+        // .then((msg) => {
+        //     console.log('初始化页面直接引入')
+        // })
+        button.addEventListener('click', event => {
+            import('./index.js')
+            .then(({ A, B, C, default: def }) => {
+                // console.log(A, B, C)
+                console.log(def)
+            })
+        })
+
+        let condition = false
+        if (condition) {
+            import('./index.js').then(() =>{
+                console.log('condition===true')
+            })
+        }
+    </script>
+    <script type="module">
+        import { A } from './foo.js';
+        const x = 1
+        console.log(this, '===this')
+        console.log(window.x, '====window.x')
+        console.log(x)
+        console.log(x === window.x)
+        console.log(this === undefined)
+    </script>
+</body>
+</html>
+
